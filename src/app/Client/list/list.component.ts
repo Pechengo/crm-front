@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Client } from 'src/app/Modelo/Client';
 import { Service } from 'src/app/Service/service.service';
-
 
 @Component({
   selector: 'app-list',
@@ -11,14 +10,30 @@ import { Service } from 'src/app/Service/service.service';
 })
 export class ListComponent implements OnInit {
 
-  clients: Client[] = [];
+  public clients:Client[];
   constructor(private service:Service, private router:Router) { }
 
   ngOnInit(): void {
-    this.service.getClient()
-    .subscribe(data=>{
+    this.ListarClientes()
+  }
+
+  ListarClientes(){
+    this.service.getClient().subscribe(data=>{
+      console.log(data);
       this.clients=data;
     })
+  }
+
+  Nuevo(){
+    this.router.navigate(["add"]);
+  }
+
+  Editar(){
+    this.router.navigate(["edit"]);
+  }
+
+  Eliminar(){
+    this.router.navigate(["delete"]);
   }
 
 }
