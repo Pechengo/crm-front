@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="card">
+        <div class="car-header">
+            <h3>Clientes</h3>
+            <button class="btn btn-info" style="margin-left: 20px;">Nuevo</button>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Region</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let client of clients" class="text-center">
+                        <td>{{client.id}}</td>
+                        <td>{{client.name}}</td>
+                        <td>{{client.surname}}</td>
+                        <td></td>
+                        <td>
+                            <button class="btn btn-warning">Editar</button>
+                            <button class="btn btn-danger">Eliminar</button>                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
