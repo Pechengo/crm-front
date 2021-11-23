@@ -12,12 +12,20 @@ import { Observable } from 'rxjs';
 export class Service {
     constructor(private http:HttpClient) { }
 
-    private Url = 'http://localhost:8080/clients'
+    private Url = 'http://localhost:8080'
     getClient():Observable<any> {
-      return this.http.get(this.Url);
+      return this.http.get(this.Url+"/clients");
     }
 
     insertClient(client:any): Observable<any>{
-      return this.http.post(this.Url,client);
+      return this.http.post(this.Url+"/clients",client);
+    }
+
+    deleteClient(id:any): Observable<any>{
+      return this.http.delete(this.Url+"/delete"+id);
+    }
+
+    editClient(client:any): Observable<any>{
+      return this.http.post(this.Url+"/update"+client.id,client);
     }
 }

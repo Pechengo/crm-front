@@ -8,22 +8,18 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Region</th>
-                        <th>ACCIONES</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let client of clients" class="text-center">
-                        <td>{{client.id}}</td>
                         <td>{{client.name}}</td>
                         <td>{{client.surname}}</td>
-                        <td></td>
                         <td>
-                            <button class="btn btn-warning">Editar</button>
-                            <button class="btn btn-danger" style="margin-left: 10px;">Eliminar</button>                            
+                            <button (click)="EditarCliente(client)" class="btn btn-warning">Editar</button>
+                            <button (click)="EliminarCliente(client)" class="btn btn-danger" style="margin-left: 10px;">Eliminar</button>                            
                         </td>
                     </tr>
                 </tbody>

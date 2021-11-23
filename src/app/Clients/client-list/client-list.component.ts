@@ -7,7 +7,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ClientComponent } from '../client/client.component';
-import { FormBuilder } from '@angular/forms'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { Observable } from 'rxjs';
+import { ClientEditComponent } from '../client-edit/client-edit.component';
+import { ModalDeleteComponent } from 'src/app/Modal/modal-delete/delete.component';
 
 @Component({
   selector: 'app-clients',
@@ -17,7 +20,8 @@ import { FormBuilder } from '@angular/forms'
 export class ClientListComponent implements OnInit {
 
   public clients:Client[];
-  constructor(private service:Service, private router:Router, private dialog: MatDialog) { }
+  public clientListForm: FormGroup;
+  constructor(private service:Service, private router:Router, private dialog: MatDialog, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.ListarClientes()
@@ -38,11 +42,35 @@ export class ClientListComponent implements OnInit {
     this.dialog.open(ClientComponent,dialogConfig);
   }
 
-  Editar(){
-    this.router.navigate(["edit"]);
+  EditarCliente(client:any){
+    this.clientListForm = this.fb.group({
+      id: client.id,
+      name: client.name,
+      surname: client.surname
+    });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '400px';
+    dialogConfig.width = '600px';    
+    dialogConfig.data = this.clientListForm.value;    
+    this.dialog.open(ClientEditComponent,dialogConfig)
+    console.log(dialogConfig.data)
   }
 
-  Eliminar(){
-    this.router.navigate(["delete"]);
+  EliminarCliente(client: any){
+    this.dialog.open(ModalDeleteComponent,{
+      data: "¿Desea eliminar el cliente"+" "+client.name+" "+client.surname+"?"})
+      .afterClosed().subscribe((confirmado: Boolean)=>{
+        if (confirmado){
+          this.service.deleteClient(client.id).subscribe(resp=>{
+            if(resp==true){
+              this.clients.pop();
+              window.location.reload();
+            }
+          })
+        } else {
+          close();
+        }
+      })
   }
 }

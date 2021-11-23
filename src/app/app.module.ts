@@ -12,13 +12,19 @@ import { MatTableModule} from '@angular/material/table'
 import { ClientComponent } from './Clients/client/client.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { ClientEditComponent } from './Clients/client-edit/client-edit.component';
+import { ModalComponent } from './Modal/modal.component';
+import { ModalDeleteComponent } from './Modal/modal-delete/delete.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientListComponent,
-    ClientComponent
+    ClientComponent,
+    ClientEditComponent,
+    ModalComponent,
+    ModalDeleteComponent
   ],
   imports: [
     BrowserModule,
