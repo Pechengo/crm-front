@@ -1,25 +1,41 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListComponent } from './Client/list/list.component';
-import {FormsModule} from '@angular/forms';
-import {Service} from '../app/Service/service.service'
-import {HttpClientModule} from '@angular/common/http'
+import { ClientListComponent } from './Clients/client-list/client-list.component';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {Service} from '../app/Service/service.service';
+import {HttpClientModule} from '@angular/common/http';
+import {MatDialogModule, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogContainer} from '@angular/material/dialog';
+import { MatTableModule} from '@angular/material/table'
+import { ClientComponent } from './Clients/client/client.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent
+    ClientListComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ],
-  providers: [Service],
-  bootstrap: [AppComponent]
+  providers: [
+    Service
+  ],
+  bootstrap: [AppComponent],
+  entryComponents:[ClientComponent]
 })
 export class AppModule { }

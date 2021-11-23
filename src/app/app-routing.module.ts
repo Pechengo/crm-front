@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListComponent } from './Client/list/list.component';
+import { ClientListComponent } from './Clients/client-list/client-list.component';
 
 const routes: Routes = [
-  {path:'list', component:ListComponent}
+  {path:'clients', component:ClientListComponent}
 ];
 
 @NgModule({

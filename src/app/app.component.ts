@@ -1,7 +1,8 @@
 import { NullTemplateVisitor } from '@angular/compiler';
-import { Component } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { ListComponent } from './Client/list/list.component';
+import { ClientListComponent } from './Clients/client-list/client-list.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
 
   }
 
-  Listar(){
-    this.router.navigate(["list"]);
+  ListarClientes(){
+    this.router.navigate(["clients"]);
   }
-}
+};
+

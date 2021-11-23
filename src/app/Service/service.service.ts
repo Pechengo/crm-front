@@ -8,12 +8,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 
+@Injectable()
 export class Service {
     constructor(private http:HttpClient) { }
 
-    Url="http://localhost:8080/test";
+    private Url = 'http://localhost:8080/clients'
+    getClient():Observable<any> {
+      return this.http.get(this.Url);
+    }
 
-    getClient():Observable<Client[]> {
-      return this.http.get<Client[]>(this.Url);
+    insertClient(client:any): Observable<any>{
+      return this.http.post(this.Url,client);
     }
 }
