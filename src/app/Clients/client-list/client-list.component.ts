@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { matDialogAnimations } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
 import { Client } from 'src/app/Modelo/Client';
-import { Service } from 'src/app/Service/service.service';
+import { ClientService } from 'src/app/Service/clientservice.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -21,7 +21,7 @@ export class ClientListComponent implements OnInit {
 
   public clients:Client[];
   public clientListForm: FormGroup;
-  constructor(private service:Service, private router:Router, private dialog: MatDialog, private fb: FormBuilder) { }
+  constructor(private service:ClientService, private router:Router, private dialog: MatDialog, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.ListarClientes()
@@ -29,8 +29,7 @@ export class ClientListComponent implements OnInit {
 
   ListarClientes(){
     this.service.getClient().subscribe(data=>{
-      console.log(data);
-      this.clients=data;
+    this.clients=data;
     })
   }
 
@@ -44,7 +43,7 @@ export class ClientListComponent implements OnInit {
 
   EditarCliente(client:any){
     this.clientListForm = this.fb.group({
-      id: client.id,
+      idclient: client.idclient,
       name: client.name,
       surname: client.surname
     });
@@ -62,7 +61,7 @@ export class ClientListComponent implements OnInit {
       data: "¿Desea eliminar el cliente"+" "+client.name+" "+client.surname+"?"})
       .afterClosed().subscribe((confirmado: Boolean)=>{
         if (confirmado){
-          this.service.deleteClient(client.id).subscribe(resp=>{
+          this.service.deleteClient(client.idclient).subscribe(resp=>{
             if(resp==true){
               this.clients.pop();
               window.location.reload();

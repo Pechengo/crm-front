@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Client } from 'src/app/Modelo/Client';
 import { MatDialogRef, MatDialog, MatDialogClose, MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { Service } from 'src/app/Service/service.service';
+import { ClientService } from 'src/app/Service/clientservice.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
@@ -17,14 +17,14 @@ export class ClientComponent { //implements OnInit {
   clientForm: FormGroup;
 
   constructor(
-    private service:Service, 
+    private service:ClientService, 
     private fb:FormBuilder, 
     private dialog:MatDialogRef<Client>, 
     private router:Router){}
 
   ngOnInit(): void {
     this.clientForm = this.fb.group({
-      id: '',
+      idclient: '',
       name: '',
       surname: ''
     })

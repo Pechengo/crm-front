@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientListComponent } from './Clients/client-list/client-list.component';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {Service} from '../app/Service/service.service';
+import {ClientService} from './Service/clientservice.service';
 import {HttpClientModule} from '@angular/common/http';
 import {MatDialogModule, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogContainer} from '@angular/material/dialog';
 import { MatTableModule} from '@angular/material/table'
@@ -15,6 +15,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { ClientEditComponent } from './Clients/client-edit/client-edit.component';
 import { ModalComponent } from './Modal/modal.component';
 import { ModalDeleteComponent } from './Modal/modal-delete/delete.component';
+import { ProductListComponent } from './Products/product-list/product-list.component';
+import { ProductEditComponent } from './Products/product-edit/product-edit.component';
+import { ProductComponent } from './Products/product/product.component';
+
 
 
 @NgModule({
@@ -24,7 +28,10 @@ import { ModalDeleteComponent } from './Modal/modal-delete/delete.component';
     ClientComponent,
     ClientEditComponent,
     ModalComponent,
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    ProductListComponent,
+    ProductEditComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,7 @@ import { ModalDeleteComponent } from './Modal/modal-delete/delete.component';
     ReactiveFormsModule
   ],
   providers: [
-    Service
+    ClientService
   ],
   bootstrap: [AppComponent],
   entryComponents:[ClientComponent]

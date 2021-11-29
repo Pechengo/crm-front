@@ -1,0 +1,14 @@
+<form [formGroup]="productEditForm">
+    <div>
+        <div class="form-group">
+            <label for="product.desc_product">Nombre</label>
+            <input type="text" formControlName="desc_product" class="form-control" id="desc_product">
+        </div>
+        <div class="form-group">
+            <label for="product.price_product">Precio</label>
+            <input type="number" formControlName="price_product" clas="form-control" id="price_product">
+        </div>
+        <button (click)="guardarProducto()" type="button" class="btn btn-success" style='margin-top: 30px;'>Guardar</button>
+        <button (click)="close()" type="button" class="btn btn-danger" style='margin-top: 30px; margin-left: 10px;'>Cancelar</button>
+    </div>
+</form>

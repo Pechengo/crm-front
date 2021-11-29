@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/Modelo/Client';
-import { Service } from 'src/app/Service/service.service';
+import { ClientService } from 'src/app/Service/clientservice.service';
 
 @Component({
   selector: 'app-client-edit',
@@ -14,14 +14,14 @@ export class ClientEditComponent implements OnInit {
   client: Client;
   clientEditForm: FormGroup;
 
-  constructor(private service:Service, 
+  constructor(private service:ClientService, 
     private fb:FormBuilder, 
     private dialog:MatDialogRef<Client>, 
     private router:Router,
     
     public dialogRef:MatDialogRef<Client>,@Inject(MAT_DIALOG_DATA) public data: any,) {
       this.clientEditForm= this.fb.group({
-        id: this.data.id,
+        idclient: this.data.idclient,
         name: this.data.name,
         surname: this.data.surname
       })

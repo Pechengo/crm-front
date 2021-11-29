@@ -19,5 +19,9 @@ export class AppComponent {
   ListarClientes(){
     this.router.navigate(["clients"]);
   }
+
+  ListarProductos(){
+    this.router.navigate(["products"]);
+  }
 };
 

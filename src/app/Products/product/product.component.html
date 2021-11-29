@@ -1,0 +1,14 @@
+<form [formGroup]="productForm">
+    <div>
+        <div class="form-group">
+            <label for="product.desc_product">Nombre</label>
+            <input type="text" formControlName="desc_product" class="form-control" id="desc" placeholder="Ingrese nombre">
+        </div>
+        <div class="form-group">
+            <label for="product.price_product">Precio</label>
+            <input type="number" formControlName="price_product" class="form-control" id="price" placeholder="Ingrese precio">
+        </div>
+        <button (click)="onSubmit()" type="button" class="btn btn-success" style='margin-top: 30px;'>Aceptar</button>
+        <button (click)="close()" type="button" class="btn btn-danger" style='margin-top: 30px; margin-left: 10px;'>Cancelar</button>
+    </div>
+</form>

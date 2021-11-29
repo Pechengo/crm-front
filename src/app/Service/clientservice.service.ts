@@ -9,16 +9,16 @@ import { Observable } from 'rxjs';
 })
 
 @Injectable()
-export class Service {
+export class ClientService {
     constructor(private http:HttpClient) { }
 
-    private Url = 'http://localhost:8080'
+    private Url = 'http://localhost:8080/clients'
     getClient():Observable<any> {
-      return this.http.get(this.Url+"/clients");
+      return this.http.get(this.Url);
     }
 
     insertClient(client:any): Observable<any>{
-      return this.http.post(this.Url+"/clients",client);
+      return this.http.post(this.Url,client);
     }
 
     deleteClient(id:any): Observable<any>{
@@ -26,6 +26,6 @@ export class Service {
     }
 
     editClient(client:any): Observable<any>{
-      return this.http.post(this.Url+"/update"+client.id,client);
+      return this.http.post(this.Url+"/update"+client.idclient,client);
     }
 }

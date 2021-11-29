@@ -1,6 +1,6 @@
 export class Client{
 
-    public id: number;
+    public idclient: number;
     public name: string;    
     public surname: string;
 }
