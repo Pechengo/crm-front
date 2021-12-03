@@ -12,16 +12,20 @@ import { MatDialog } from '@angular/material/dialog';
 export class AppComponent {
   title = 'crm-front';
 
-  constructor(private router:Router){
+  constructor(private router: Router) {
 
   }
 
-  ListarClientes(){
+  ListarClientes() {
     this.router.navigate(["clients"]);
   }
 
-  ListarProductos(){
+  ListarProductos() {
     this.router.navigate(["products"]);
+  }
+
+  ListarVentas() {
+    this.router.navigate(["sales"]);
   }
 };
 

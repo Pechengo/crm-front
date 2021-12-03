@@ -7,17 +7,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./delete.component.css']
 })
 export class ModalDeleteComponent implements OnInit {
-  
+
   constructor(
     public dialogo: MatDialogRef<ModalDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public mensaje: string) { }
 
-    cancelar(): void {
-      this.dialogo.close(false);
-    }
-    confirmado(): void {
-      this.dialogo.close(true);
-    }
+  cancelar(): void {
+    this.dialogo.close(false);
+  }
+  confirmado(): void {
+    this.dialogo.close(true);
+  }
 
   ngOnInit() {
   }

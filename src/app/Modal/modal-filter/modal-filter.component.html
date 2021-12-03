@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Filtros</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>Ingrese rango de fechas</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+            <input [(ngModel)]="selectedFIni" matStartDate placeholder="Fecha inicio">
+            <input [(ngModel)]="selectedFFin" matEndDate placeholder="Fecha fin">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="margin-left: 20px;">
+        <mat-label>Seleccionar cliente</mat-label>
+        <mat-select matNativeControl [(ngModel)]="selectedClient">
+            <mat-option *ngFor="let client of clients" [value]="client.idclient">
+                {{client.name}}
+                {{client.surname}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button (click)="cancelado()" class="btn btn-danger">Cancelar</button>
+    <button (click)="confirmado(selectedClient, selectedFIni, selectedFFin)" class="btn btn-success"
+        style="margin-left: 100px;">Ok</button>
+</div>

@@ -1,16 +1,12 @@
-import { Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import { matDialogAnimations } from '@angular/material/dialog';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ModalDeleteComponent } from 'src/app/Modal/modal-delete/delete.component';
 import { Client } from 'src/app/Modelo/Client';
 import { ClientService } from 'src/app/Service/clientservice.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { animate, style, transition, trigger } from '@angular/animations';
-import { ClientComponent } from '../client/client.component';
-import { FormBuilder, FormGroup } from '@angular/forms'
-import { Observable } from 'rxjs';
 import { ClientEditComponent } from '../client-edit/client-edit.component';
-import { ModalDeleteComponent } from 'src/app/Modal/modal-delete/delete.component';
+import { ClientComponent } from '../client/client.component';
 
 @Component({
   selector: 'app-clients',
@@ -18,30 +14,39 @@ import { ModalDeleteComponent } from 'src/app/Modal/modal-delete/delete.componen
   styleUrls: ['./client-list.component.css']
 })
 export class ClientListComponent implements OnInit {
-
-  public clients:Client[];
+  @Input() groupFilters: Object;
+  @Input() searchByKeyword: string;
+  public clients: Client[];
   public clientListForm: FormGroup;
-  constructor(private service:ClientService, private router:Router, private dialog: MatDialog, private fb: FormBuilder) { }
+
+  constructor(private service: ClientService,
+    private router: Router,
+    private dialog: MatDialog,
+    private fb: FormBuilder) {
+
+  }
 
   ngOnInit(): void {
-    this.ListarClientes()
+    this.ListarClientes();
   }
 
-  ListarClientes(){
-    this.service.getClient().subscribe(data=>{
-    this.clients=data;
+  ListarClientes() {
+    this.service.getClient().subscribe(data => {
+      this.clients = data;
     })
+    return this.clients;
+
   }
 
-  NuevoCliente(){
+  NuevoCliente() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.height = '400px';
     dialogConfig.width = '600px';
-    this.dialog.open(ClientComponent,dialogConfig);
+    this.dialog.open(ClientComponent, dialogConfig);
   }
 
-  EditarCliente(client:any){
+  EditarCliente(client: any) {
     this.clientListForm = this.fb.group({
       idclient: client.idclient,
       name: client.name,
@@ -50,19 +55,20 @@ export class ClientListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.height = '400px';
-    dialogConfig.width = '600px';    
-    dialogConfig.data = this.clientListForm.value;    
-    this.dialog.open(ClientEditComponent,dialogConfig)
+    dialogConfig.width = '600px';
+    dialogConfig.data = this.clientListForm.value;
+    this.dialog.open(ClientEditComponent, dialogConfig)
     console.log(dialogConfig.data)
   }
 
-  EliminarCliente(client: any){
-    this.dialog.open(ModalDeleteComponent,{
-      data: "¿Desea eliminar el cliente"+" "+client.name+" "+client.surname+"?"})
-      .afterClosed().subscribe((confirmado: Boolean)=>{
-        if (confirmado){
-          this.service.deleteClient(client.idclient).subscribe(resp=>{
-            if(resp==true){
+  EliminarCliente(client: any) {
+    this.dialog.open(ModalDeleteComponent, {
+      data: "¿Desea eliminar el cliente" + " " + client.name + " " + client.surname + "?"
+    })
+      .afterClosed().subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.service.deleteClient(client.idclient).subscribe(resp => {
+            if (resp == true) {
               this.clients.pop();
               window.location.reload();
             }

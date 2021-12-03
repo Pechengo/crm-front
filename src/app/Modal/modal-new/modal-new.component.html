@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Nueva Venta</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill" style="margin-left: 20px;">
+        <mat-label>Seleccionar cliente</mat-label>
+        <mat-select matNativeControl [(ngModel)]="selectedClient">
+            <mat-option *ngFor="let client of clients" [value]="client.idclient">
+                {{client.name}}
+                {{client.surname}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="margin-left: 20px;">
+        <mat-label>Seleccionar producto</mat-label>
+        <mat-select matNativeControl [(ngModel)]="selectedProduct">
+            <mat-option *ngFor="let product of products" [value]="product.idproduct">
+                {{product.desc_product}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-label style="margin-left: 50px;">Cantidad</mat-label>
+    <input matInput type="number" matNativeControl [(ngModel)]="selectedQuantity">
+
+</div>
+<div mat-dialog-actions>
+    <button (click)="cancelado()" class="btn btn-danger">Cancelar</button>
+    <button (click)="confirmado(selectedClient, selectedProduct, selectedQuantity)" class="btn btn-success"
+        style="margin-left: 100px;">Ok</button>
+</div>

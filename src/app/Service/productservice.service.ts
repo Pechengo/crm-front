@@ -9,24 +9,28 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ProductService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   private Url = 'http://localhost:8080/products';
 
-  getProduct(): Observable<any>{
+  getProduct(): Observable<any> {
     return this.http.get(this.Url);
   }
 
-  insertProduct(product:any): Observable<any>{
-    return this.http.post(this.Url,product);
+  insertProduct(product: any): Observable<any> {
+    return this.http.post(this.Url, product);
   }
 
-  deleteProduct(id:any): Observable<any>{
-    return this.http.delete(this.Url+"/delete"+id)
+  deleteProduct(id: any): Observable<any> {
+    return this.http.delete(this.Url + "/delete" + id)
   }
 
-  editProduct(product:any): Observable<any>{
+  editProduct(product: any): Observable<any> {
     console.log(product);
-    return this.http.post(this.Url+"/update"+product.idproduct,product);
+    return this.http.post(this.Url + "/update" + product.idproduct, product);
+  }
+
+  getProductById(id: any): Observable<any> {
+    return this.http.get(this.Url + id)
   }
 }
